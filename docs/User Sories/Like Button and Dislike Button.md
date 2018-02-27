@@ -8,20 +8,3 @@ Like Button:
 Don’t like button: 
   As a young adult who has comprehensive tastes of various aspects in life, I want to see the Don’t Like Button in the app that once I click it, I won’t see the recommendation or schedule of this artist concert, and lower the recommendation ranking of concerts shared similar traits, for example in a crowded place or a loud environment. The reason why I want to do this is even though sometimes I listen to a artist online, I don’t necessary want to go to her/his concert. For example I listen to hard rock occasionally on Spotify, however I don’t want to be physically present in a hard rock concert, because quite often it is too loud and too crowded. One difference about listening music online and in the concert is that, in concert the environment and the people around have a huge influence on the music experience. 
 
-
-- Jason -
-
-Log in:
-  As a user, I would like to log in using my spotify credentials and select one of my playlists to view a list of recommended concerts in my area.
-
-- Renee - 
-
-Time Span:
-  The user first need to be logged in to our music app. Refer to the "Log In" user story for details about login and third-party authentication. After the first initial scan of the user's playlists and a list of recommended concerts, the user will be able to select a specific period of time before filtering through the concerts again. The user will be able to find out whether the recommended artists will be holding concerts during a specific time by filtering through month, date, year, or all three if he/she wants so that he/she will be able to arrange travel plans to a specific concert early on before ticket prices rise to an unaffordable amount.
-
-
-- Botao Li - 
-
-Does not Logged in:
-  If the user does not logged in, then the like button and don't like button will not show to him. Also, there is no recommendation for him. And when he click the concerts part, the log in part will pop up to recommend user to sign up.
-
