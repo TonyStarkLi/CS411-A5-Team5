@@ -4,9 +4,9 @@ block content
     h1= title
     p Welcome to #{title}
 
-    form(action="/artist" method="POST")
+    form(action="/artist" method="GET")
       input(type="text" value="artist" name="artist" placeholder="")
-      input(button type="submit")
+      input(type="submit")
     //p Year:
     //  input(type="text" name="year" placeholder="")
     //p imdb:
