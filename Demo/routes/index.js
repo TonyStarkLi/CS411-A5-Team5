@@ -32,7 +32,12 @@ router.get('/artist',function (req, res, next) {
 
         if (error) throw new Error(error);
         //console.log(body);
-        console.log(JSON.parse(body).Similar.Results);
+        artistsJSON = JSON.parse(body).Similar.Results;
+        artists = [];
+        for(var i in artistsJSON){
+          artists.push(artistsJSON[i].Name);
+        }
+        console.log(artists);
         res.render('index', { title: 'BTC Rates', result: JSON.parse(body).Similar.Info });
 
     })
