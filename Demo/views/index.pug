@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    h1= title
+    p Welcome to #{title}
+
+    form(action="/artist" method="POST")
+      input(type="text" value="artist" name="artist" placeholder="")
+      input(button type="submit")
+    //p Year:
+    //  input(type="text" name="year" placeholder="")
+    //p imdb:
+    //  input(type="text" name="imdb" placeholder="")
+
+
+    //form action="/btc"
+    //  input name="artist" type="text"
+    //  input name ="submit" type="submit"
+
