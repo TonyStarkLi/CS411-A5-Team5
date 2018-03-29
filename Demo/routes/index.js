@@ -5,35 +5,40 @@ const request = require("request");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Concert Recommendation' });
 });
 
-router.post('/artist',function (req, res, next) {
-    console.log(req.params);
+router.get('/artist',function (req, res, next) {
+    artist = req.query.artist;
+    console.log(artist);
 
-    const u1 = 'https://tastedive.com/api/similar';
-    const u2 = u1 + encodeURIComponent('red+hot+chili+peppers');
-    console.log(u2);
+    //const u1 = 'https://tastedive.com/api/similar';
+    //const u2 = u1 + encodeURIComponent('red+hot+chili+peppers');
+    //console.log(u2);
 
     const options = {
         method: 'GET',
-        url: 'https://tastedive.com/api/similar',
-        q: 'red+hot+chili+peppers',
-        k: '303685-CS411Con-VGAU9OYT'
+        url: 'https://tastedive.com/api/similar?',
+        qs:{
+          q: artist,
+          k: '303685-CS411Con-VGAU9OYT'
+        }
     };
 
     op = encodeURI(options);
-
     console.log(op);
-
     request(options, function (error, response, body) {
+      console.log(options)
 
         if (error) throw new Error(error);
-
-        console.log("123");
-        console.log(body);
-        console.log(JSON.parse(body).Similar.Results);
-        res.render('index', { title: 'BTC Rates', result: JSON.parse(body).Similar.Info });
+        //console.log(body);
+        artistsJSON = JSON.parse(body).Similar.Results;
+        artists = [];
+        for(var i in artistsJSON){
+          artists.push(artistsJSON[i].Name);
+        }
+        console.log(artists);
+        res.render('similarartists', { searchartist:artist, similarartists:artists});
 
     })
 
