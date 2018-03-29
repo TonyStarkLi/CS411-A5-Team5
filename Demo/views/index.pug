@@ -2,18 +2,19 @@ extends layout
 
 block content
     h1= title
-    p Welcome to #{title}
-
-    form(action="/artist" method="GET")
-      input(type="text" value="artist" name="artist" placeholder="")
-      input(type="submit")
-    //p Year:
-    //  input(type="text" name="year" placeholder="")
-    //p imdb:
-    //  input(type="text" name="imdb" placeholder="")
 
 
-    //form action="/btc"
-    //  input name="artist" type="text"
-    //  input name ="submit" type="submit"
+    if show_table
+        p Welcome to #{title}
+        form(action="/artist" method="GET")
+            label Type any artist name to see similar artists
+            br
+            input(type="text" value="artist" name="artist" placeholder="")
+            input(type="submit")
+
+    if result
+        ul
+            each val in result
+                li= val
+                
 
