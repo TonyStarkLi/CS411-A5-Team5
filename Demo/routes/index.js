@@ -109,12 +109,16 @@ function buildConcertList(artistList,callback){
       for (var c in concertJson){
         console.log(c);
         console.log(concertJson[c]);
-        if(concertWithinDistance(50,concertJson[c])){ //replace 50 with user defined distance
-           concertList.push(concertJson[c]);
+        if(!(userLat==null || userLong==null))
+        {
+          if(concertWithinDistance(50,concertJson[c])){ //replace 50 with user defined distance
+             concertList.push(concertJson[c]);
+          }
         }
-
+        else {
+          concertList.push(concertJson[c]);
+        }
       }
-      /*concertList.push(JSON.parse(concerts));*/
       counter+=1;
       if(counter==artistList.length){
         callback(concertList);
@@ -123,7 +127,6 @@ function buildConcertList(artistList,callback){
 
   }
 }
-
 
 
 
