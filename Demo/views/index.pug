@@ -1,19 +1,46 @@
 extends layout
 
+
+
 block content
+    script.
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        else {
+          alert("Geolocation is not supported by this browser.");
+        }
+      }
+
+      function showPosition(position) {
+        alert("Latitude: " + position.coords.latitude +
+        "Longitude: " + position.coords.longitude)
+        document.getElementById("lat").value = position.coords.latitude;
+        document.getElementById("long").value=position.coords.longitude;
+      }
+
+
     h1= title
     p Welcome to #{title}
 
-    form(action="/artist" method="GET")
-      input(type="text" value="artist" name="artist" placeholder="")
-      input(type="submit")
-    //p Year:
-    //  input(type="text" name="year" placeholder="")
-    //p imdb:
-    //  input(type="text" name="imdb" placeholder="")
+    if location==false
+      button(onclick="getLocation()") Set Location
+      form(action="/setLocation" method="POST")
+        input(id="lat" type="hidden" name="latitude" value="")
+        input(id="long" type="hidden" name="longitude" value="")
+        input(type="submit")
+    else
+      form(action="/artist" method="GET")
+        input(type="text" value="artist" name="artist" placeholder="")
+        input(type="submit")
+        //p Year:
+        //  input(type="text" name="year" placeholder="")
+        //p imdb:
+        //  input(type="text" name="imdb" placeholder="")
 
 
-    //form action="/btc"
-    //  input name="artist" type="text"
-    //  input name ="submit" type="submit"
+      //form action="/btc"
+      //  input name="artist" type="text"
+      //  input name ="submit" type="submit"
 
