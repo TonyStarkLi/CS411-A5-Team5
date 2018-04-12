@@ -86,7 +86,16 @@ function getArtistsFromTastedive(artist,callback){
 }
 
 function getConcertsFromArtist(artist,callback) {
-  request('https://rest.bandsintown.com/artists/'+artist+'/events?app_id=2a7380d65c50ddc8e86c33f0ebd7d7a7',function(err,response,body) {
+  const options = {
+    method:'GET',
+    baseUrl:'https://rest.bandsintown.com/artists/',
+    url: artist+'/events?',
+    qs:{
+      app_id:'2a7380d65c50ddc8e86c33f0ebd7d7a7'
+    }
+  };
+  request(options,function(err,response,body) {
+    //console.log(body);
     callback(body);
   });
 }
@@ -99,6 +108,7 @@ function buildConcertList(artistList,callback){
       concertJson = JSON.parse(concerts);
       for (var c in concertJson){
         console.log(c);
+        console.log(concertJson[c]);
         if(concertWithinDistance(50,concertJson[c])){ //replace 50 with user defined distance
            concertList.push(concertJson[c]);
         }
