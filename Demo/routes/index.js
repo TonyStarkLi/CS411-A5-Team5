@@ -17,6 +17,11 @@ router.post('/setLocation',function(req,res,next){
   console.log(req.body);
   userLat=req.body.latitude;
   userLong=req.body.longitude;
+  if (userLat=='' || userLong==''){
+    userLat = null;
+    userLong= null;
+  }
+
   console.log(userLat,userLong);
   res.render('index', { title: 'Concert Recommendation', location:true});
 });
@@ -107,8 +112,6 @@ function buildConcertList(artistList,callback){
     getConcertsFromArtist(artistList[i],function(concerts){
       concertJson = JSON.parse(concerts);
       for (var c in concertJson){
-        console.log(c);
-        console.log(concertJson[c]);
         if(!(userLat==null || userLong==null))
         {
           if(concertWithinDistance(50,concertJson[c])){ //replace 50 with user defined distance
