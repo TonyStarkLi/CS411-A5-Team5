@@ -4,6 +4,29 @@ const request = require("request");
 const tastediveKey = config.tastedive;
 const bandsintownKey = config.bandsintown;
 
+
+// from https://www.geodatasource.com/developers/javascript
+function distance(lat1, lon1, userLat, userLong) {
+  var radlat1 = Math.PI * lat1/180
+  var raduserLat = Math.PI * userLat/180
+  var theta = lon1-userLong
+  var radtheta = Math.PI * theta/180
+  var dist = Math.sin(radlat1) * Math.sin(raduserLat) + Math.cos(radlat1) * Math.cos(raduserLat) * Math.cos(radtheta);
+  dist = Math.acos(dist)
+  dist = dist * 180/Math.PI
+  dist = dist * 60 * 1.1515
+  return dist
+}
+
+function concertWithinDistance(numMiles,concert,userLat,userLong){
+  if (distance(concert.venue.latitude,concert.venue.longitude,userLat,userLong) <= numMiles){
+    return true;
+  }
+  else{
+    return null;
+  }
+}
+
 module.exports = {
 
   getArtistsFromTastedive:function(artist,callback){
@@ -54,7 +77,7 @@ module.exports = {
         for (var c in concertJson){
           if(!(userLat==null || userLong==null))
           {
-            if(concertWithinDistance(50,concertJson[c])){ //replace 50 with user defined distance
+            if(concertWithinDistance(50,concertJson[c],userLat,userLong)){ //replace 50 with user defined distance
                concertList.push(concertJson[c]);
             }
           }
@@ -69,31 +92,6 @@ module.exports = {
       });
 
     }
-  },
-
-
-
-  // from https://www.geodatasource.com/developers/javascript
-  distance:function(lat1, lon1, userLat, userLong) {
-    var radlat1 = Math.PI * lat1/180
-    var raduserLat = Math.PI * userLat/180
-    var theta = lon1-userLong
-    var radtheta = Math.PI * theta/180
-    var dist = Math.sin(radlat1) * Math.sin(raduserLat) + Math.cos(radlat1) * Math.cos(raduserLat) * Math.cos(radtheta);
-    dist = Math.acos(dist)
-    dist = dist * 180/Math.PI
-    dist = dist * 60 * 1.1515
-    return dist
-  },
-
-  concertWithinDistance:function(numMiles,concert){
-    if (distance(concert.venue.latitude,concert.venue.longitude,userLat,userLong) <= numMiles){
-      return true;
-    }
-    else{
-      return null;
-    }
   }
-
 
 }
