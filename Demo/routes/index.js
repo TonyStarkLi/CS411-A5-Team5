@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+const concertBuilder = require('../public/concerts.js');
 const request = require("request");
 
 var userLat;
@@ -29,39 +29,9 @@ router.post('/setLocation',function(req,res,next){
 
 router.get('/artist',function (req, res, next) {
     artist = req.query.artist;
-    getArtistsFromTastedive(artist,function(artistList){
-    buildConcertList(artistList,function(concertList){
+    concertBuilder.getArtistsFromTastedive(artist, userLat, userLong, function(artistList){
+    concertBuilder.buildConcertList(artistList,function(concertList){
       res.send(concertList);
-
-    //const u1 = 'https://tastedive.com/api/similar';
-    //const u2 = u1 + encodeURIComponent('red+hot+chili+peppers');
-    //console.log(u2);
-
-    /*   const options = {
-        method: 'GET',
-        url: 'https://tastedive.com/api/similar?',
-        qs:{
-          q: artist,
-          k: '303685-CS411Con-VGAU9OYT'
-        }
-    };
-
-    op = encodeURI(options);
-    console.log(op);
-    request(options, function (error, response, body) {
-      console.log(options)
-
-        if (error) throw new Error(error);
-        //console.log(body);
-        artistsJSON = JSON.parse(body).Similar.Results;
-        artists = [];
-        for(var i in artistsJSON){
-          artists.push(artistsJSON[i].Name);
-        }
-        console.log(artists);
-        res.render('similarartists', { searchartist:artist, similarartists:artists});
-
-    });*/
     });
   });
 });
