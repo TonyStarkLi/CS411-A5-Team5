@@ -1,0 +1,8 @@
+so right now when you open the app to localhost:3000, the index router takes over. it opens the index.pug file, which has a button to get the user's latitude and longitude. you have to click 'set location' and then 'submit', but when we create the actual homepage with the login button and the search bar, we can have it get the location automatically.
+Once the location has been set, it loads a search bar, and then you can search (this routes to localhost:3000/search using routes/search.js) for an artist and it brings up concerts for that artist and up to 5 similar artists. 
+
+I put the api calls to tastedive and bandsintown in a separate file (public/concerts.js) so that we can use the same functions for the single artist search, and the recommendation for a user's top artists.
+
+I also moved the api keys to a separate file (config.js) 
+
+
