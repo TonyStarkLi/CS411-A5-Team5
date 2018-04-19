@@ -8,12 +8,21 @@ var userLong;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  //console.log(req.url);
+  res.render('index', { title: 'Concert Recommendation', location:false});
+});
+
+router.get('/after', function(req, res, next) {
+  //console.log(req.query);
   res.render('index', { title: 'Concert Recommendation', location:false});
 });
 
 
+
+
 router.post('/setLocation',function(req,res,next){
   console.log(userLat,userLong);
+  console.log(req.url);
   console.log(req.body);
   userLat=req.body.latitude;
   userLong=req.body.longitude;
@@ -35,6 +44,7 @@ router.get('/artist',function (req, res, next) {
     });
   });
 });
+
 
 
 

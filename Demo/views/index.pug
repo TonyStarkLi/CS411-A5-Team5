@@ -22,7 +22,10 @@ block content
 
 
     h1= title
+    a(href="/login") log in with spotify
     p Welcome to #{title}
+
+
 
     if location==false
       button(onclick="getLocation()") Set Location
@@ -38,6 +41,17 @@ block content
         //  input(type="text" name="year" placeholder="")
         //p imdb:
         //  input(type="text" name="imdb" placeholder="")
+
+
+
+
+
+    if access_token
+      p access_token
+    if refresh_token
+      p refresh_token
+    if error
+      p error
 
 
       //form action="/btc"
