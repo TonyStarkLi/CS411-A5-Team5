@@ -52,14 +52,12 @@ router.get('/artist',function (req, res, next) {
 });
 
 router.get('/artists',function (req, res, next) {
-  artist = req.query.artist0;
+  artist0 = req.query.artist0;
   artist1 = req.query.artist1;
   artist2 = req.query.artist2;
-  console.log(artist,artist1,artist2);
-  concertBuilder.getArtistsFromTastedive(artist, function(artistList){
-    concertBuilder.buildConcertList(artistList, userLat, userLong, function(concertList){
+  console.log(artist0,artist1,artist2);
+    concertBuilder.buildConcertList([artist0,artist1,artist2], userLat, userLong, function(concertList){
       res.send(concertList);
-    });
   });
 });
 
