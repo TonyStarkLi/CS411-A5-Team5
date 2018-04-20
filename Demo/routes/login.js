@@ -117,6 +117,7 @@ router.get('/spotify_oauth', function(req, res) {
                   "artists": artists
                 });
               }
+
               resolve(user_music_data)
             });
           });
@@ -143,7 +144,7 @@ router.get('/spotify_oauth', function(req, res) {
 
 
 
-        let redirectHome = function(){
+        let redirectHome = function(user_data){
           var options = {
             url: 'https://api.spotify.com/v1/me',
             headers: { 'Authorization': 'Bearer ' + access_token },
@@ -152,22 +153,35 @@ router.get('/spotify_oauth', function(req, res) {
 
           // use the access token to access the Spotify Web API
           request.get(options, function(error, response, body) {
+            console.log(user_data);
+            var topArtists = [];
+            for (i in user_data.data){
+              topArtists.push(user_data.data[i].artists);
+            }
+
+            //artists:topArtists,
+            console.log(querystring.stringify(topArtists));
             res.redirect('/after?' +
-                querystring.stringify({
-                  access_token: access_token, // this is being passed directly into the html, not being used in any further node things
-                  refresh_token: refresh_token          //as such, you need an html page (pug file) that actually has those parameters. then use them in future requests (hidden inputs or angular, or whatever)
-                }));
+                    querystring.stringify({
+                    artist0:topArtists[0],
+                    artist1:topArtists[1],
+                    artist2:topArtists[2],
+                    access_token: access_token, // this is being passed directly into the html, not being used in any further node things
+                    refresh_token: refresh_token       //as such, you need an html page (pug file) that actually has those parameters. then use them in future requests (hidden inputs or angular, or whatever)
+
+            }));
           });
         }
 
         let dataStoreAndRedirect = function(user_data){
+          console.log(user_data);
           insertInto_user_data(user_data);
-          redirectHome();
+          redirectHome(user_data);
         }
 
 
 
-       get_user_id().then(function(fromResolve){
+        get_user_id().then(function(fromResolve){
           get_user_artists(fromResolve).then(function(user_data){
             //insertInto_user_data(user_data);
             dataStoreAndRedirect(user_data);
