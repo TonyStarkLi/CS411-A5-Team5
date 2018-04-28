@@ -9,12 +9,14 @@ block content
         form(action="/artist" method="GET")
             label Type any artist name to see similar artists
             br
-            input(type="text" value="artist" name="artist" placeholder="")
+            input(type="text" value="taylor swift" name="artist" placeholder="")
             input(type="submit")
 
     if result
         ul
             each val in result
-                li= val
+                li
+                    a(href='/concert/'+val) #{val}
                 
 
+    a(href="/") Go Back

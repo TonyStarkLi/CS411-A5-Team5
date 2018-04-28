@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Latest compiled and minified jQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.3.js"
+            integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+    <!-- Angular (minified) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-cookies.js"></script>
+
+
+    <!--Controllers for this page/app -->
+    <script src="javascripts/controller.js"></script>
+    <!-- Local styles -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+</head>
+
+<body ng-app="cs411">
+<div ng-controller="cs411ctrl" ng-init="initApp()">
+
+    <h1>CS411 Project: GigaTune</h1>
+
+    <form class="form-inline" name="inputForm">
+        <label for="formName">Artist's Name</label>
+        <input type="text" class="form-control" id="formName" placeholder="Enter Name" ng-model="name" required>
+        <button type="submit" class="btn btn-primary" ng-disabled="inputForm.$invalid" ng-click="search()">
+            Search
+        </button>
+    </form>
+
+    <div ng-hide="authorized">
+        <br/>
+        <button type="submit" class="btn btn-primary" ng-click="doSpotifyAuth()">Log in with Spotify</button>
+    </div>
+    <div ng-show="authorized">
+        <br/>
+        <button type="submit" class="btn btn-primary" ng-click="logout()">Log Out</button>
+    </div>
+
+    <div ng-show="authorized">
+        <br/>
+        <label>Welcome {{username}}</label>
+        <br/>
+        <a href="/concert/{{x}}" ng-repeat="x in top3">{{x}}<br/></a>
+    </div>
+
+
+
+</div>
+</body>
+</html>

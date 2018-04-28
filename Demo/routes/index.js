@@ -4,10 +4,12 @@ var router = express.Router();
 const request = require("request");
 const querystring = require("querystring");
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Go Musicians', show_table: true });
+    res.render('index', { title: 'Go Musicians', show_table: true, login: false });
 });
+
 
 router.get('/artist',function (req, res, next) {
 

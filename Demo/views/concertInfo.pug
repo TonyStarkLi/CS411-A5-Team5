@@ -1,0 +1,20 @@
+a(href="/") Go Back
+div
+    each val in result
+        label datetime
+        li= val.datetime
+
+        label city
+        li= val.venue.city
+
+        label region
+        li= val.venue.region
+
+        label venue
+        li= val.venue.name
+
+        label ticket
+        br
+        a(href=val.url) ticket
+
+        br

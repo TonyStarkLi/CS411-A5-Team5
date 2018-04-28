@@ -6,11 +6,18 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "angular": "^1.6.10",
+    "body-parser": "^1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "express-session": "^1.15.6",
     "http-errors": "~1.6.2",
+    "mongoose": "^5.0.14",
     "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11"
+    "passport": "^0.4.0",
+    "passport-spotify": "^1.0.0",
+    "pug": "2.0.0-beta11",
+    "request": "^2.85.0"
   }
 }
