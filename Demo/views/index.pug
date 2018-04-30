@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1= title
+    h1 #[a(href="/" class='home') GigaTune]
 
 
     if show_table
@@ -17,6 +17,6 @@ block content
             each val in result
                 li
                     a(href='/concert/'+val) #{val}
-                
 
-    a(href="/") Go Back
+
+

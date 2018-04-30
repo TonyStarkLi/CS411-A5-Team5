@@ -110,7 +110,7 @@ router.get('/spotify',
 
 //OAuth Step 2
 router.get('/callback',
-    passport.authenticate('spotify', { failureRedirect: '/login' }),
+    passport.authenticate('spotify', { failureRedirect: '/' }),
     function(req, res) {
         // Successful authentication, redirect home.
         res.cookie('authStatus', 'true')

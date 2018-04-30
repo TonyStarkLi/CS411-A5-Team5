@@ -25,7 +25,7 @@ router.get('/:name', function(req, res, next) {
 
         if (error) throw new Error(error);
         artistsJSON = JSON.parse(body).Similar.Results;
-        artists = [];
+        artists = [JSON.parse(body).Similar.Info[0].Name];
         for(var i in artistsJSON){
             artists.push(artistsJSON[i].Name);
         }

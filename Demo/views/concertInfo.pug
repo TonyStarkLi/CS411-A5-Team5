@@ -1,20 +1,17 @@
-a(href="/") Go Back
-div
+head
+  title= name
+  link(rel='stylesheet', href='/stylesheets/concerts.css')
+body
+  h1 #[a(href="/" class="home") GigaTune]
+  div
     each val in result
-        label datetime
-        li= val.datetime
+      ul(class = 'box')
+        -var artists = val.lineup.join(', ');
+        h2= artists
 
-        label city
-        li= val.venue.city
-
-        label region
-        li= val.venue.region
-
-        label venue
-        li= val.venue.name
-
-        label ticket
+        li Venue: #{val.venue.name}
+        li #{val.venue.city}, #{val.venue.region}
+        li Date: #{val.datetime}
         br
-        a(href=val.url) ticket
-
+        li #[a(href=val.url class='ticket') Buy Tickets]
         br
