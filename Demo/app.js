@@ -8,7 +8,6 @@ const session = require('express-session')
 const passport = require('passport')
 
 const auth = require('./routes/authSpotify')
-const indexRouter = require('./routes/index')
 const searchRouter = require('./routes/search')
 const apiRouter = require('./routes/api')
 const concertInfoRouter = require('./routes/concertInfo')
@@ -36,14 +35,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', indexRouter);
 app.use('/auth', auth);
 app.use('/search', searchRouter)
 app.use('/api', apiRouter)
 app.use('/concert', concertInfoRouter)
 
 
-app.listen(5000,function(){
+app.listen(3000,function(){
 });
 
 // catch 404 and forward to error handler
