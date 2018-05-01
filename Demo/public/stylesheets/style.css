@@ -1,9 +1,22 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: linear-gradient(silver, white);
+  /*background: linear-gradient(silver, white);*/
   height:100%;
   background-repeat:no-repeat;
+    background-image: url(../images/image2.jpg);
+    /* Full height */
+
+    /* Center and scale the image nicely */
+    /*background-position: center;*/
+    background-size: cover;
+}
+h1 {
+    color: white;
+}
+
+label {
+    color: white;
 }
 
 a {

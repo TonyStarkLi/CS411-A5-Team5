@@ -4,6 +4,8 @@ head
 body
   h1 #[a(href="/" class="home") GigaTune]
   div
+    if !(result.length)
+      h1 No concert held by #{name}
     each val in result
       ul(class = 'box')
         -var artists = val.lineup.join(', ');
