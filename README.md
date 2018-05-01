@@ -54,7 +54,8 @@ Notes
 * [Node.js](https://nodejs.org/en/) - Back-End
 * [MongoDB](https://www.mongodb.com) - Database
 * [Spotify API](https://beta.developer.spotify.com/callback/) - Get top artists
-* [Google Map API](https://developers.google.com/maps/) - Show concert locations
+* [Tastedive API](https://tastedive.com/read/api) - Get similar artists
+* [Bandsintown API](https://app.swaggerhub.com/api/Bandsintown/PublicAPI/3.0.0) - Retrieve concert information for artists
 
 ## Team Members
 
